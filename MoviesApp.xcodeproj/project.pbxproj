@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		C26B1E762B60647000600E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E752B60647000600E63 /* AppDelegate.swift */; };
 		C26B1E782B60647000600E63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E772B60647000600E63 /* SceneDelegate.swift */; };
-		C26B1E7A2B60647000600E63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E792B60647000600E63 /* ViewController.swift */; };
-		C26B1E7D2B60647000600E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C26B1E7B2B60647000600E63 /* Main.storyboard */; };
 		C26B1E7F2B60647100600E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26B1E7E2B60647100600E63 /* Assets.xcassets */; };
 		C26B1E822B60647100600E63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C26B1E802B60647100600E63 /* LaunchScreen.storyboard */; };
 		C26B1E8D2B60647100600E63 /* MoviesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E8C2B60647100600E63 /* MoviesAppTests.swift */; };
@@ -39,8 +37,6 @@
 		C26B1E722B60647000600E63 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26B1E752B60647000600E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C26B1E772B60647000600E63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C26B1E792B60647000600E63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C26B1E7C2B60647000600E63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C26B1E7E2B60647100600E63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C26B1E812B60647100600E63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C26B1E832B60647100600E63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,10 +95,10 @@
 		C26B1E742B60647000600E63 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				C26B1EC52B6069CB00600E63 /* Network */,
+				C26B1EC42B6069C200600E63 /* Modules */,
 				C26B1E752B60647000600E63 /* AppDelegate.swift */,
 				C26B1E772B60647000600E63 /* SceneDelegate.swift */,
-				C26B1E792B60647000600E63 /* ViewController.swift */,
-				C26B1E7B2B60647000600E63 /* Main.storyboard */,
 				C26B1E7E2B60647100600E63 /* Assets.xcassets */,
 				C26B1E802B60647100600E63 /* LaunchScreen.storyboard */,
 				C26B1E832B60647100600E63 /* Info.plist */,
@@ -125,6 +121,20 @@
 				C26B1E982B60647100600E63 /* MoviesAppUITestsLaunchTests.swift */,
 			);
 			path = MoviesAppUITests;
+			sourceTree = "<group>";
+		};
+		C26B1EC42B6069C200600E63 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C26B1EC52B6069CB00600E63 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +243,6 @@
 			files = (
 				C26B1E822B60647100600E63 /* LaunchScreen.storyboard in Resources */,
 				C26B1E7F2B60647100600E63 /* Assets.xcassets in Resources */,
-				C26B1E7D2B60647000600E63 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C26B1E7A2B60647000600E63 /* ViewController.swift in Sources */,
 				C26B1E762B60647000600E63 /* AppDelegate.swift in Sources */,
 				C26B1E782B60647000600E63 /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +305,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C26B1E7B2B60647000600E63 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C26B1E7C2B60647000600E63 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C26B1E802B60647100600E63 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +442,6 @@
 				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +469,6 @@
 				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
