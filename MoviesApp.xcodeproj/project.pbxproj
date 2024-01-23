@@ -22,6 +22,7 @@
 		C26B1EDA2B6078E600600E63 /* MoviesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1ED92B6078E600600E63 /* MoviesListUseCase.swift */; };
 		C26B1EDD2B60793A00600E63 /* MoviesListRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EDC2B60793A00600E63 /* MoviesListRemoteRepository.swift */; };
 		C26B1EE02B6079D700600E63 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EDF2B6079D700600E63 /* NetworkClient.swift */; };
+		C26B1EE22B607CDF00600E63 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EE12B607CDF00600E63 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		C26B1ED92B6078E600600E63 /* MoviesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListUseCase.swift; sourceTree = "<group>"; };
 		C26B1EDC2B60793A00600E63 /* MoviesListRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRemoteRepository.swift; sourceTree = "<group>"; };
 		C26B1EDF2B6079D700600E63 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		C26B1EE12B607CDF00600E63 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				C26B1EDF2B6079D700600E63 /* NetworkClient.swift */,
+				C26B1EE12B607CDF00600E63 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				C26B1E782B60647000600E63 /* SceneDelegate.swift in Sources */,
 				C26B1ECB2B60704000600E63 /* Coordinator.swift in Sources */,
 				C26B1EDA2B6078E600600E63 /* MoviesListUseCase.swift in Sources */,
+				C26B1EE22B607CDF00600E63 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

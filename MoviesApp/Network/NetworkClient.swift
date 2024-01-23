@@ -6,13 +6,8 @@
 //
 
 import Foundation
-enum NetworkError: Error {
-    case normalError(Error)
-    case badURL
-}
-
 protocol NetworkClientProtocol: AnyObject {
-    
+    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Result<R, NetworkError>) -> Void)
 }
 final class NetworkClient: NetworkClientProtocol {
     private var configuration: URLSessionConfiguration
