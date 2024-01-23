@@ -7,7 +7,7 @@
 
 import Foundation
 protocol NetworkClientProtocol: AnyObject {
-    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Result<R, NetworkError>) -> Void)
+    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void)
 }
 final class NetworkClient: NetworkClientProtocol {
     private var configuration: URLSessionConfiguration
@@ -16,9 +16,9 @@ final class NetworkClient: NetworkClientProtocol {
         self.configuration = configuration
         self.session = session
     }
-    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Result<R, NetworkError>) -> Void) {
+    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void) {
         session.dataTask(with: request, completionHandler: { data, response, error in
-            guard let url = URL(string: request.url?.absoluteString ?? "") else {
+            guard let _ = URL(string: request.url?.absoluteString ?? "") else {
                 completion(.failure(NetworkError.badURL))
                 return
             }

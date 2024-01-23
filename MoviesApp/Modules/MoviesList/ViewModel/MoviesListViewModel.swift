@@ -12,7 +12,11 @@ protocol MoviesListViewModelProtocol: AnyObject {
 }
 
 final class MoviesListViewModel: MoviesListViewModelProtocol {
+    let useCase: MoviesListUseCaseProtocol
+    init(useCase: MoviesListUseCaseProtocol) {
+        self.useCase = useCase
+    }
     func getMovies() {
-        
+        self.useCase.getMovies()
     }
 }

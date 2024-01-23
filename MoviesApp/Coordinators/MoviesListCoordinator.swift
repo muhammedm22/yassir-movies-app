@@ -16,7 +16,9 @@ class MoviesListCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = MoviesListViewModel()
+        let remoteRepo = MoviesListRemoteRepository()
+        let useCase = MoviesListUseCase(remoteRepository: remoteRepo)
+        let viewModel = MoviesListViewModel(useCase: useCase)
         let moviesListVC = MoviesListViewController(viewModel: viewModel)
         navigationController.pushViewController(moviesListVC, animated: false)
     }
