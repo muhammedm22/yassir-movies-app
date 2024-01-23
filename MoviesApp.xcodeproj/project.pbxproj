@@ -26,6 +26,7 @@
 		C26B1EE42B607D3300600E63 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EE32B607D3300600E63 /* NetworkRequest.swift */; };
 		C26B1EE62B607D8200600E63 /* NetworkHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EE52B607D8200600E63 /* NetworkHTTPMethod.swift */; };
 		C26B1EE82B607F1500600E63 /* MoviesListEndPointProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EE72B607F1500600E63 /* MoviesListEndPointProviders.swift */; };
+		C26B1EEE2B60899000600E63 /* MoviesListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1EED2B60899000600E63 /* MoviesListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C26B1EE32B607D3300600E63 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		C26B1EE52B607D8200600E63 /* NetworkHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHTTPMethod.swift; sourceTree = "<group>"; };
 		C26B1EE72B607F1500600E63 /* MoviesListEndPointProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListEndPointProviders.swift; sourceTree = "<group>"; };
+		C26B1EED2B60899000600E63 /* MoviesListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		C26B1ECF2B6070E300600E63 /* MoviesList */ = {
 			isa = PBXGroup;
 			children = (
+				C26B1EEC2B60898600600E63 /* Entites */,
 				C26B1EDB2B60791C00600E63 /* Repositories */,
 				C26B1ED82B6078D600600E63 /* UseCase */,
 				C26B1ED52B60758A00600E63 /* ViewModel */,
@@ -219,6 +222,14 @@
 				C26B1EE52B607D8200600E63 /* NetworkHTTPMethod.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C26B1EEC2B60898600600E63 /* Entites */ = {
+			isa = PBXGroup;
+			children = (
+				C26B1EED2B60899000600E63 /* MoviesListResponse.swift */,
+			);
+			path = Entites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +370,7 @@
 				C26B1E762B60647000600E63 /* AppDelegate.swift in Sources */,
 				C26B1ECD2B60706F00600E63 /* MoviesListCoordinator.swift in Sources */,
 				C26B1ED12B6070F400600E63 /* MoviesListViewController.swift in Sources */,
+				C26B1EEE2B60899000600E63 /* MoviesListResponse.swift in Sources */,
 				C26B1ED72B60759700600E63 /* MoviesListViewModel.swift in Sources */,
 				C26B1EDD2B60793A00600E63 /* MoviesListRemoteRepository.swift in Sources */,
 				C26B1EE62B607D8200600E63 /* NetworkHTTPMethod.swift in Sources */,
