@@ -10,6 +10,7 @@ import UIKit
 class MoviesListViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     // MARK: - Properties
     private var viewModel: MoviesListViewModelProtocol?
     init(viewModel: MoviesListViewModelProtocol) {
@@ -25,10 +26,12 @@ class MoviesListViewController: UIViewController {
         viewModel?.getMovies { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
+                self?.hideActivityIndicator()
             }
         }
     }
     private func setUI() {
+        showActivityIndicator()
         setupTableView()
         setNavigationController()
     }
@@ -59,5 +62,14 @@ extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension MoviesListViewController {
+    func showActivityIndicator() {
+        activityIndicator.isHidden = false
+    }
+    func hideActivityIndicator() {
+        activityIndicator.isHidden = true
     }
 }

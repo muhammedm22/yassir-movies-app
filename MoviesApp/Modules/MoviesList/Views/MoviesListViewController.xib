@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesListViewController" customModule="MoviesApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="KUg-Yk-3HW" id="DrB-NX-PRx"/>
                 <outlet property="tableView" destination="Afd-Vm-1np" id="gwC-9k-rwR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Vp0-YG-ZGa"/>
             </connections>
@@ -24,6 +25,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="KUg-Yk-3HW">
+                    <rect key="frame" x="178" y="420" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,6 +36,8 @@
                 <constraint firstItem="Afd-Vm-1np" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HEg-FY-2eD"/>
                 <constraint firstItem="Afd-Vm-1np" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Zjp-SB-9YH"/>
                 <constraint firstItem="Afd-Vm-1np" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fDN-1r-TS6"/>
+                <constraint firstItem="KUg-Yk-3HW" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="oc5-rw-HHA"/>
+                <constraint firstItem="KUg-Yk-3HW" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="pti-b4-gzH"/>
             </constraints>
             <point key="canvasLocation" x="-51.145038167938928" y="19.718309859154932"/>
         </view>
