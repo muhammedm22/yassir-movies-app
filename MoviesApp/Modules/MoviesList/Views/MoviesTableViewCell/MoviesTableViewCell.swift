@@ -12,15 +12,16 @@ class MoviesTableViewCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet private weak var imgView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descLabel: UILabel!
+    @IBOutlet private weak var yearLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectionStyle = .none
     }
 
     func configureCell(movie: Movie) {
         titleLabel.text = movie.title
-        descLabel.text = movie.desc
+        yearLabel.text = movie.releaseYear
         imgView.sd_setImage(with: movie.imageURL)
     }
     

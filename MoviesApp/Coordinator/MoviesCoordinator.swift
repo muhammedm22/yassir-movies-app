@@ -25,7 +25,9 @@ class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
         navigationController.pushViewController(moviesListVC, animated: false)
     }
     func navigateToDetails(movie: Movie) {
-        let viewModel = MovieDetailsViewModel(movie: movie)
+        let remoteRepo = MoviesDetailsRemoteRepository()
+        let useCase = MovieDetailsUseCase(remoteRepository: remoteRepo)
+        let viewModel = MovieDetailsViewModel(id: movie.id, useCase: useCase)
         let detailsVC = MovieDetailsViewController(viewModel: viewModel)
         self.navigationController.pushViewController(detailsVC, animated: true)
     }

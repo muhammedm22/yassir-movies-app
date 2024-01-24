@@ -24,9 +24,25 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     func getMovies(completion: @escaping () -> Void) {
         self.useCase.getMovies(completion: { [weak self] movies in
             guard let self else { return }
-            self.movies = movies
+            self.movies = format(movies: movies)
             completion()
         })
+    }
+    
+    private func format(movies: [Movie]) -> [Movie] {
+        return movies.map({
+            let date = convertStringToDate(stringDate: $0.releaseYear)
+            let yearFormmattedString = getStringFrom(date: date)
+           return  Movie(id: $0.id, title: $0.title, desc: $0.desc, imageURL: $0.imageURL, releaseYear: yearFormmattedString) })
+    }
+    private func convertStringToDate(stringDate: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: stringDate) ?? Date()
+    }
+    
+    private func getStringFrom(date: Date) -> String {
+        return  date.toString(format: "yyyy")
     }
     func didTapMovie(index: Int) {
         let movie = movies[index]

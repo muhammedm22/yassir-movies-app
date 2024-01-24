@@ -8,24 +8,22 @@
 import Foundation
 
 protocol MovieDetailsViewModelProtocol: AnyObject {
-    var movie: Movie { get set}
+    var movie: Movie? { get set }
+    func getDetails(completion: @escaping () -> Void)
 }
 
 final class MovieDetailsViewModel: MovieDetailsViewModelProtocol {
-    var movie: Movie
-    init(movie: Movie) {
-        self.movie = movie
-        setYear()
+    var movie: Movie?
+    private var id: Int
+    private let useCase: MovieDetailsUseCaseProtocol
+    init(id: Int, useCase: MovieDetailsUseCaseProtocol) {
+        self.id = id
+        self.useCase = useCase
     }
-    
-    private func convertStringToDate(stringDate: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: stringDate) ?? Date()
-    }
-    
-    private func setYear() {
-        let date = convertStringToDate(stringDate: movie.releaseYear)
-        self.movie.releaseYear = date.toString(format: "yyyy")
+    func getDetails(completion: @escaping () -> Void) {
+        useCase.getMovie(id: id, completion: { [weak self] movie in
+            self?.movie = movie
+            completion()
+        })
     }
 }

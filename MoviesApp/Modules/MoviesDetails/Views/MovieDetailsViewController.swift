@@ -27,9 +27,13 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        viewModel?.getDetails(completion: { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.setUI()
+            }
+        })
     }
-    
     private func setUI() {
         imageView.contentMode = .scaleToFill
         guard let movie = viewModel?.movie else { return }
