@@ -14,7 +14,7 @@ enum MoviesListEndPointProviders {
 
 extension MoviesListEndPointProviders: NetworkRequest {
     var baseURL: String {
-        return "https://api.themoviedb.org/"
+        return AppConfig.baseURL
     }
     var endPoint: String {
         switch self {
@@ -24,7 +24,7 @@ extension MoviesListEndPointProviders: NetworkRequest {
     }
     var headers: [String: String]? {
         [
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGQyYjE1YTg4YWI2OTM2ZmU0YzFkNWViOTJhYjE0YiIsInN1YiI6IjY1YjA0NjVkZDEwMGI2MDEwYzgzM2ZhZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zx0lgCJrhQc6t1OspXQssUiCvjICzgC9qpZoMnB5DcY",
+            "Authorization": AppConfig.apiToken,
             "accept": "application/json"
         ]
     }

@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  MoviesApp
+//
+//  Created by Mohamed Allam on 24/01/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+baseURL = https:/$()/api.themoviedb.org/
+imagesBaseURL = https:/$()/image.tmdb.org/t/p/w500/
+apiToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGQyYjE1YTg4YWI2OTM2ZmU0YzFkNWViOTJhYjE0YiIsInN1YiI6IjY1YjA0NjVkZDEwMGI2MDEwYzgzM2ZhZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zx0lgCJrhQc6t1OspXQssUiCvjICzgC9qpZoMnB5DcY

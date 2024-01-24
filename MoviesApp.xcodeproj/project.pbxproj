@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C21F1C1B2B6194C500FCA3EC /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1C1A2B6194C500FCA3EC /* Movie.swift */; };
+		C21F1C1F2B61987E00FCA3EC /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1C1D2B61987E00FCA3EC /* MoviesTableViewCell.swift */; };
+		C21F1C202B61987E00FCA3EC /* MoviesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21F1C1E2B61987E00FCA3EC /* MoviesTableViewCell.xib */; };
+		C21F1C222B619C5800FCA3EC /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C21F1C212B619C5800FCA3EC /* Config.xcconfig */; };
+		C21F1C252B619D3700FCA3EC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1C242B619D3700FCA3EC /* Config.swift */; };
+		C21F1C282B619EE600FCA3EC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C21F1C272B619EE600FCA3EC /* SDWebImage */; };
 		C26B1E762B60647000600E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E752B60647000600E63 /* AppDelegate.swift */; };
 		C26B1E782B60647000600E63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B1E772B60647000600E63 /* SceneDelegate.swift */; };
 		C26B1E7F2B60647100600E63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26B1E7E2B60647100600E63 /* Assets.xcassets */; };
@@ -47,6 +53,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C21F1C1A2B6194C500FCA3EC /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C21F1C1D2B61987E00FCA3EC /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
+		C21F1C1E2B61987E00FCA3EC /* MoviesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesTableViewCell.xib; sourceTree = "<group>"; };
+		C21F1C212B619C5800FCA3EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C21F1C242B619D3700FCA3EC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C26B1E722B60647000600E63 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26B1E752B60647000600E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C26B1E772B60647000600E63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C21F1C282B619EE600FCA3EC /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +110,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C21F1C1C2B61987300FCA3EC /* MoviesTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C21F1C1D2B61987E00FCA3EC /* MoviesTableViewCell.swift */,
+				C21F1C1E2B61987E00FCA3EC /* MoviesTableViewCell.xib */,
+			);
+			path = MoviesTableViewCell;
+			sourceTree = "<group>";
+		};
+		C21F1C232B619D2B00FCA3EC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C21F1C212B619C5800FCA3EC /* Config.xcconfig */,
+				C21F1C242B619D3700FCA3EC /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		C26B1E692B60647000600E63 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +151,7 @@
 		C26B1E742B60647000600E63 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				C21F1C232B619D2B00FCA3EC /* Config */,
 				C26B1EDE2B6079AE00600E63 /* Network */,
 				C26B1ECE2B6070DC00600E63 /* Modules */,
 				C26B1EC92B60703000600E63 /* Coordinators */,
@@ -182,6 +213,7 @@
 		C26B1ED42B60758400600E63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C21F1C1C2B61987300FCA3EC /* MoviesTableViewCell */,
 				C26B1ED22B60724D00600E63 /* MoviesListViewController.xib */,
 				C26B1ED02B6070F400600E63 /* MoviesListViewController.swift */,
 			);
@@ -228,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				C26B1EED2B60899000600E63 /* MoviesListResponse.swift */,
+				C21F1C1A2B6194C500FCA3EC /* Movie.swift */,
 			);
 			path = Entites;
 			sourceTree = "<group>";
@@ -249,6 +282,7 @@
 			);
 			name = MoviesApp;
 			packageProductDependencies = (
+				C21F1C272B619EE600FCA3EC /* SDWebImage */,
 			);
 			productName = MoviesApp;
 			productReference = C26B1E722B60647000600E63 /* MoviesApp.app */;
@@ -323,6 +357,7 @@
 			);
 			mainGroup = C26B1E692B60647000600E63;
 			packageReferences = (
+				C21F1C262B619EE600FCA3EC /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = C26B1E732B60647000600E63 /* Products */;
 			projectDirPath = "";
@@ -341,7 +376,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C26B1E822B60647100600E63 /* LaunchScreen.storyboard in Resources */,
+				C21F1C222B619C5800FCA3EC /* Config.xcconfig in Resources */,
 				C26B1E7F2B60647100600E63 /* Assets.xcassets in Resources */,
+				C21F1C202B61987E00FCA3EC /* MoviesTableViewCell.xib in Resources */,
 				C26B1ED32B60724D00600E63 /* MoviesListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,16 +408,19 @@
 				C26B1ECD2B60706F00600E63 /* MoviesListCoordinator.swift in Sources */,
 				C26B1ED12B6070F400600E63 /* MoviesListViewController.swift in Sources */,
 				C26B1EEE2B60899000600E63 /* MoviesListResponse.swift in Sources */,
+				C21F1C252B619D3700FCA3EC /* Config.swift in Sources */,
 				C26B1ED72B60759700600E63 /* MoviesListViewModel.swift in Sources */,
 				C26B1EDD2B60793A00600E63 /* MoviesListRemoteRepository.swift in Sources */,
 				C26B1EE62B607D8200600E63 /* NetworkHTTPMethod.swift in Sources */,
 				C26B1EE82B607F1500600E63 /* MoviesListEndPointProviders.swift in Sources */,
 				C26B1EE02B6079D700600E63 /* NetworkClient.swift in Sources */,
 				C26B1E782B60647000600E63 /* SceneDelegate.swift in Sources */,
+				C21F1C1F2B61987E00FCA3EC /* MoviesTableViewCell.swift in Sources */,
 				C26B1ECB2B60704000600E63 /* Coordinator.swift in Sources */,
 				C26B1EE42B607D3300600E63 /* NetworkRequest.swift in Sources */,
 				C26B1EDA2B6078E600600E63 /* MoviesListUseCase.swift in Sources */,
 				C26B1EE22B607CDF00600E63 /* NetworkError.swift in Sources */,
+				C21F1C1B2B6194C500FCA3EC /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +470,7 @@
 /* Begin XCBuildConfiguration section */
 		C26B1E9A2B60647100600E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -490,6 +531,7 @@
 		};
 		C26B1E9B2B60647100600E63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -544,6 +586,7 @@
 		};
 		C26B1E9D2B60647100600E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -571,6 +614,7 @@
 		};
 		C26B1E9E2B60647100600E63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -598,6 +642,7 @@
 		};
 		C26B1EA02B60647100600E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -618,6 +663,7 @@
 		};
 		C26B1EA12B60647100600E63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -638,6 +684,7 @@
 		};
 		C26B1EA32B60647100600E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -656,6 +703,7 @@
 		};
 		C26B1EA42B60647100600E63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21F1C212B619C5800FCA3EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -712,6 +760,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C21F1C262B619EE600FCA3EC /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C21F1C272B619EE600FCA3EC /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C21F1C262B619EE600FCA3EC /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C26B1E6A2B60647000600E63 /* Project object */;
 }
