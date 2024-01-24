@@ -12,4 +12,5 @@ struct Movie {
     let title: String
     let desc: String
     let imageURL: URL
+    var releaseYear: String
 }

@@ -6,8 +6,10 @@
 //
 
 import UIKit
-
-class MoviesListCoordinator: Coordinator {
+protocol MoviesListCoordinatorProtocol: AnyObject {
+    func navigateToDetails(movie: Movie)
+}
+class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
@@ -18,9 +20,14 @@ class MoviesListCoordinator: Coordinator {
     func start() {
         let remoteRepo = MoviesListRemoteRepository()
         let useCase = MoviesListUseCase(remoteRepository: remoteRepo)
-        let viewModel = MoviesListViewModel(useCase: useCase)
+        let viewModel = MoviesListViewModel(useCase: useCase, coordinator: self)
         let moviesListVC = MoviesListViewController(viewModel: viewModel)
         navigationController.pushViewController(moviesListVC, animated: false)
+    }
+    func navigateToDetails(movie: Movie) {
+        let viewModel = MovieDetailsViewModel(movie: movie)
+        let detailsVC = MovieDetailsViewController(viewModel: viewModel)
+        self.navigationController.pushViewController(detailsVC, animated: true)
     }
     
 }
