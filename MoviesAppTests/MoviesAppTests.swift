@@ -2,14 +2,21 @@
 //  MoviesAppTests.swift
 //  MoviesAppTests
 //
-//  Created by Mohamed Allam on 23/01/2024.
+//  Created by Mohamed Allam on 25/01/2024.
 //
 
 import XCTest
 @testable import MoviesApp
 
 final class MoviesAppTests: XCTestCase {
-
+    let movies = [
+        Movie(id: 1, title: "Taken", desc: "Taken desc", imageURL: URL(string: "www.google.com")! , releaseYear: "2024", vote_average: 1),
+        Movie(id: 2, title: "Sh", desc: "Taken desc", imageURL: URL(string: "www.google.com")! , releaseYear: "2022", vote_average: 2),
+        Movie(id: 3, title: "Lord of the rings", desc: "Taken desc", imageURL: URL(string: "www.google.com")! , releaseYear: "2020", vote_average: 3),
+        Movie(id: 4, title: "Cell", desc: "Cell", imageURL: URL(string: "www.google.com")! , releaseYear: "2025", vote_average: 4),
+        Movie(id: 5, title: "Alpha", desc: "Alpha desc", imageURL: URL(string: "www.google.com")! , releaseYear: "2019", vote_average: 5),
+        Movie(id: 6, title: "Beta", desc: "Taken desc", imageURL: URL(string: "www.google.com")! , releaseYear: "2013", vote_average: 2)
+    ]
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -18,19 +25,49 @@ final class MoviesAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_list_with_no_movies() {
+        let usecase = MockMoviesUseCase()
+        let coordinator = MockCoordinator()
+        let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
+        XCTAssertEqual(viewModel.movies.isEmpty,  true)
+    }
+    
+    func test_sort_movies_by_first_alphabet() {
+        let usecase = MockMoviesUseCase()
+        let coordinator = MockCoordinator()
+        let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
+        viewModel.movies = movies
+        viewModel.sort(options: .alphabet, completion: { })
+        XCTAssertEqual(viewModel.movies.first?.title, "Alpha")
+    }
+    
+    func test_sort_movies_by_newest() {
+        let usecase = MockMoviesUseCase()
+        let coordinator = MockCoordinator()
+        let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
+        viewModel.movies = movies
+        viewModel.sort(options: .newest, completion: { })
+        XCTAssertEqual(viewModel.movies.first?.releaseYear, "2025")
+    }
+    
+    func test_sort_movies_by_most_vote() {
+        let usecase = MockMoviesUseCase()
+        let coordinator = MockCoordinator()
+        let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
+        viewModel.movies = movies
+        viewModel.sort(options: .votes, completion: { })
+        XCTAssertEqual(viewModel.movies.first?.vote_average, 5)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+}
+class MockMoviesUseCase: MoviesListUseCaseProtocol {
+    func getMovies(completion: @escaping ([MoviesApp.Movie]) -> Void) {
+        completion([])
     }
+}
 
+class MockCoordinator: MoviesListCoordinatorProtocol {
+    func navigateToDetails(movie: MoviesApp.Movie) {
+        
+    }
 }

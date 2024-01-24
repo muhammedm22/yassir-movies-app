@@ -22,7 +22,7 @@ protocol MoviesListViewModelProtocol: AnyObject {
     func sort(options: MovieListSortingOptions, completion: @escaping () -> Void)
 }
 
-final class MoviesListViewModel: MoviesListViewModelProtocol {
+final public class MoviesListViewModel: MoviesListViewModelProtocol {
     
     let useCase: MoviesListUseCaseProtocol
     var movies: [Movie] = []
