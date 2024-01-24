@@ -13,4 +13,5 @@ struct Movie {
     let desc: String
     let imageURL: URL
     var releaseYear: String
+    let vote_average: Float
 }

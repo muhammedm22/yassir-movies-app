@@ -25,12 +25,14 @@ struct MoviesListResult: Codable {
     let id: Int?
     let posterPath, title: String?
     let overview: String?
-    let release_date: String
+    let release_date: String?
+    let vote_average: Float?
     enum CodingKeys: String, CodingKey {
         case id
         case posterPath = "poster_path"
         case title
         case overview
         case release_date
+        case vote_average
     }
 }

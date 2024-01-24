@@ -32,7 +32,8 @@ class MoviesListUseCase: MoviesListUseCaseProtocol {
             title: $0.title ?? "",
             desc: $0.overview ?? "",
             imageURL: URL(string:"\(AppConfig.imagesBaseURL)\($0.posterPath ?? "")") ?? URL(fileURLWithPath: ""),
-            releaseYear: $0.release_date
+            releaseYear: $0.release_date ?? "",
+            vote_average: $0.vote_average ?? 0.0
         )}
     }
 }

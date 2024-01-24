@@ -42,6 +42,58 @@ class MoviesListViewController: UIViewController {
     }
     private func setNavigationController() {
         title = "Movies List"
+        let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortBtn))
+        self.navigationItem.rightBarButtonItem = sortButton
+    }
+    
+    @objc func sortBtn() {
+        showAlertSheet()
+    }
+    
+    private func showAlertSheet() {
+        let alert = UIAlertController(title: "Sort", message: "", preferredStyle: .actionSheet)
+        let newest = UIAlertAction(title: "Newest", style: .default) { [weak self] _ in
+            self?.handleSortByNeswest()
+        }
+        alert.addAction(newest)
+        let votes = UIAlertAction(title: "Votes", style: .default) { [weak self] _ in
+            self?.handleSortByVotes()
+        }
+        alert.addAction(votes)
+        let alpahbet = UIAlertAction(title: "Alphabetaclly", style: .default) { [weak self] _ in
+            self?.handleSortByAlphabet()
+        }
+        alert.addAction(alpahbet)
+        let cancelAction = UIAlertAction(title: "Reset", style: .destructive) { [weak self] _ in
+            self?.handleResetSort()
+        }
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
+    private func handleSortByNeswest() {
+        self.viewModel?.sort(options: .newest, completion: { [weak self] in
+            self?.title = self?.viewModel?.soretedBy ?? ""
+            self?.tableView.reloadData()
+        })
+    }
+    private func handleSortByVotes() {
+        self.viewModel?.sort(options: .votes, completion: { [weak self] in
+            self?.title = self?.viewModel?.soretedBy ?? ""
+            self?.tableView.reloadData()
+        })
+    }
+    private func handleSortByAlphabet() {
+        self.viewModel?.sort(options: .alphabet, completion: { [weak self] in
+            self?.title = self?.viewModel?.soretedBy ?? ""
+            self?.tableView.reloadData()
+        })
+    }
+    private func handleResetSort() {
+        self.viewModel?.sort(options: .none, completion: { [weak self] in
+            self?.title = self?.viewModel?.soretedBy ?? ""
+            self?.tableView.reloadData()
+        })
     }
 }
 // MARK: - UITableView Protocols extension

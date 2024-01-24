@@ -32,7 +32,8 @@ class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
             title: movie.title ?? "",
             desc: movie.overview ?? "",
             imageURL: URL(string:"\(AppConfig.imagesBaseURL)\(movie.posterPath ?? "")") ?? URL(fileURLWithPath: ""),
-            releaseYear: movie.releaseDate ?? ""
+            releaseYear: movie.releaseDate ?? "",
+            vote_average: 0.0
         )
     }
 }
