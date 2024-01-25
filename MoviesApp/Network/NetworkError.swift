@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Network Request Errors
 enum NetworkError: Error {
     case normalError(Error)
     case badURL

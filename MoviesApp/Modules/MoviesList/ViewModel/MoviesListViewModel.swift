@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+/// Movies List sorting options
 enum MovieListSortingOptions {
     case none
     case alphabet
@@ -15,6 +16,7 @@ enum MovieListSortingOptions {
     case newest
 }
 
+/// MovieList ViewModel class which contain presentaion logic
 final class MoviesListViewModel: ObservableObject {
     private var cancelable: Set<AnyCancellable> = []
     let useCase: MoviesListUseCaseProtocol
@@ -27,6 +29,8 @@ final class MoviesListViewModel: ObservableObject {
         self.useCase = useCase
         self.coordinator = coordinator
     }
+    
+    /// Get List of movies
     func getMovies() {
         self.useCase.getMovies()
             .sink(receiveCompletion: { _ in } , receiveValue: { [weak self] movies in
@@ -36,22 +40,34 @@ final class MoviesListViewModel: ObservableObject {
         }).store(in: &cancelable)
     }
     
+    /// Format list of movies
+    /// - Parameter movies: [Movies]]
+    /// - Returns: return list of movies formatted
     private func format(movies: [Movie]) -> [Movie] {
         return movies.map({
             let date = convertStringToDate(stringDate: $0.releaseYear)
             let yearFormmattedString = getStringFrom(date: date)
             return  Movie(id: $0.id, title: $0.title, desc: $0.desc, imageURL: $0.imageURL, releaseYear: yearFormmattedString, vote_average: $0.vote_average) })
     }
+    
+    /// Convert String To Date
+    /// - Parameter stringDate: StringDate
+    /// - Returns: Date
     private func convertStringToDate(stringDate: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: stringDate) ?? Date()
     }
     
+    /// Get String from Date
+    /// - Parameter date: Date
+    /// - Returns: Formatted Date string
     private func getStringFrom(date: Date) -> String {
         return  date.toString(format: "yyyy")
     }
     
+    /// Sort Movies to any of sorting options
+    /// - Parameter options: MovieListSortingOptions
     func sort(options: MovieListSortingOptions) {
         switch options {
         case .alphabet:

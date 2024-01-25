@@ -8,17 +8,31 @@
 import Foundation
 import Combine
 
+/// NetworkClient protocol
 protocol NetworkClientProtocol: AnyObject {
     func request<R: Codable>(request: URLRequest, mapToModel: R.Type) -> AnyPublisher<R, NetworkError>
 
 }
+
+/// NetworkClient Concerate class
 final class NetworkClient: NetworkClientProtocol {
     private var configuration: URLSessionConfiguration
     private var session: URLSession
+    
+    /// Init NetworkClient
+    /// - Parameters:
+    ///   - configuration: URLSessionConfigartions
+    ///   - session: URLSession
     init(configuration: URLSessionConfiguration, session: URLSession) {
         self.configuration = configuration
         self.session = session
     }
+    
+    /// request URL and return Publisher of type <R:Codable, NetworkError>
+    /// - Parameters:
+    ///   - request: URLRequest
+    ///   - mapToModel: Codable
+    /// - Returns: AnyPublisher<R: Codable, NetworkError>
     func request<R: Codable>(request: URLRequest, mapToModel: R.Type) -> AnyPublisher<R, NetworkError> {
     
         return session.dataTaskPublisher(for: request)

@@ -8,15 +8,24 @@
 import Foundation
 import Combine
 
+/// MoviesList Usecase Protcool
 protocol MoviesListUseCaseProtocol: AnyObject {
     func getMovies() -> AnyPublisher<[Movie], NetworkError>
 }
+
+/// MoviesList Usecase Protocol whcih contains Movies List bussiness logic
 class MoviesListUseCase: MoviesListUseCaseProtocol {
     private let remoteRepository: MoviesListRemoteRepositoryProtocol
     private var cancelable: Set<AnyCancellable> = []
+    
+    /// Init
+    /// - Parameter remoteRepository: MoviesListRemoteRepositoryProtocol
     init(remoteRepository: MoviesListRemoteRepositoryProtocol) {
         self.remoteRepository = remoteRepository
     }
+    
+    /// Get all Movies and map it to array Publisher
+    /// - Returns: AnyPublisher<[Movie], NetworkError>
     func getMovies() -> AnyPublisher<[Movie], NetworkError> {
         return Future<[Movie], NetworkError> { [weak self] promise in
             guard let self else { return }
@@ -26,6 +35,10 @@ class MoviesListUseCase: MoviesListUseCaseProtocol {
             }).store(in: &cancelable)
         }.eraseToAnyPublisher()
     }
+    
+    /// Mapping moviesResponseResults to [Movie]
+    /// - Parameter movies: [MoviesListResult]]
+    /// - Returns: [Movie]]
     private func map(movies: [MoviesListResult]) -> [Movie] {
         return movies.map{ Movie(
             id: $0.id ?? 0,

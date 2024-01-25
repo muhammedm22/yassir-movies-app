@@ -14,10 +14,16 @@ final class MovieDetailsViewModel: ObservableObject {
     private let useCase: MovieDetailsUseCaseProtocol
     private var cancelable: Set<AnyCancellable> = []
     
+    /// init
+    /// - Parameters:
+    ///   - id: Movie id
+    ///   - useCase: Movie Details useCase
     init(id: Int, useCase: MovieDetailsUseCaseProtocol) {
         self.id = id
         self.useCase = useCase
     }
+    
+    /// GetDetails Data
     func getDetails() {
         useCase.getMovie(id: id)
             .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] movie in

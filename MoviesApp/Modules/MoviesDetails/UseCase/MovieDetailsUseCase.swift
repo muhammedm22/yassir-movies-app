@@ -8,15 +8,21 @@
 import Foundation
 import Combine
 
+/// MovieDetailsUseCaseProtocol
 protocol MovieDetailsUseCaseProtocol: AnyObject {
     func getMovie(id: Int) -> AnyPublisher<Movie, NetworkError>
 }
+/// MovieDetailsUseCase Concerate class which implement bussiness logic
 class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
     private let remoteRepository: MoviesDetailsRemoteRepositoryProtocol
     private var cancelable: Set<AnyCancellable> = []
     init(remoteRepository: MoviesDetailsRemoteRepositoryProtocol) {
         self.remoteRepository = remoteRepository
     }
+    
+    /// Get movie by id
+    /// - Parameter id: Movie id
+    /// - Returns: Publisher <Movie, NetworkError>
     func getMovie(id: Int) -> AnyPublisher<Movie, NetworkError> {
         return Future<Movie, NetworkError> { [weak self] promise in
             guard let self else { return }
@@ -29,6 +35,10 @@ class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
         }.eraseToAnyPublisher()
 
     }
+    
+    /// Mapping MovieResponse To Movie
+    /// - Parameter movie: MovieDetailsResponse
+    /// - Returns: Movie Model
     private func map(movie: MovieDetailsResponse) -> Movie {
         return  Movie(
             id: movie.id ?? 0,
