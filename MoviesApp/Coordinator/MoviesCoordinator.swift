@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 protocol MoviesListCoordinatorProtocol: AnyObject {
-
+    func initDetailsView(id: Int) -> MoviesDetailsView
 }
 class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
     var childCoordinators = [Coordinator]()
@@ -24,5 +24,9 @@ class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
         let viewModel = MoviesListViewModel(useCase: useCase, coordinator: self)
         let moviesListVC = UIHostingController(rootView: MoviesListView(viewModel: viewModel))
         navigationController.pushViewController(moviesListVC, animated: false)
+    }
+    
+    func initDetailsView(id: Int) -> MoviesDetailsView {
+        return MovieDetailsConfigurator.configureModule(id: id)
     }
 }

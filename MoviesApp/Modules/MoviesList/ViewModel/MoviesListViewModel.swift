@@ -87,4 +87,7 @@ final class MoviesListViewModel: ObservableObject {
     func sortButtonTapped() {
         showSortSheet = true
     }
+    func navigateToDetails(movie: Movie) -> MoviesDetailsView {
+        return self.coordinator.initDetailsView(id: movie.id)
+    }
 }

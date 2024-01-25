@@ -16,7 +16,7 @@ struct MoviesListView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.movies, id:\.id) { movie in
-                        NavigationLink(destination: MovieDetailsConfigurator.configureModule(id: movie.id), label: {
+                        NavigationLink(destination: viewModel.navigateToDetails(movie: movie), label: {
                             MovieCardView(movie: movie)
                                 .foregroundColor(Color.black)
                         })
