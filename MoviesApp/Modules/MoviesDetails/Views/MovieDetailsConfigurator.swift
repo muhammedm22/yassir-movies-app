@@ -6,7 +6,12 @@
 //
 
 import SwiftUI
+
+/// MovieDetailsConfigurator
 final class MovieDetailsConfigurator {
+    /// Factory method to set depedencies
+    /// - Parameter id: Movie Id
+    /// - Returns: MovieDetailsView
     static func configureModule(id: Int) -> MoviesDetailsView {
         let remoteRepo = MoviesDetailsRemoteRepository()
         let useCase = MovieDetailsUseCase(remoteRepository: remoteRepo)
