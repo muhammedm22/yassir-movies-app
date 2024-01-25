@@ -6,25 +6,28 @@
 //
 
 import Foundation
+import Combine
+
 protocol MovieDetailsUseCaseProtocol: AnyObject {
-    func getMovie(id: Int, completion: @escaping (Movie) -> Void)
+    func getMovie(id: Int) -> AnyPublisher<Movie, NetworkError>
 }
 class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
     private let remoteRepository: MoviesDetailsRemoteRepositoryProtocol
+    private var cancelable: Set<AnyCancellable> = []
     init(remoteRepository: MoviesDetailsRemoteRepositoryProtocol) {
         self.remoteRepository = remoteRepository
     }
-    func getMovie(id: Int, completion: @escaping (Movie) -> Void) {
-        let requestModel = MovieDetailsRequestModel(id: id)
-        remoteRepository.getMovie(data: requestModel,completion: { [weak self] result in
+    func getMovie(id: Int) -> AnyPublisher<Movie, NetworkError> {
+        return Future<Movie, NetworkError> { [weak self] promise in
             guard let self else { return }
-            switch result {
-            case let .success(movie):
-                completion(map(movie: movie))
-            case .failure:
-                break
-            }
-        })
+            let requestModel = MovieDetailsRequestModel(id: id)
+            remoteRepository.getMovie(data: requestModel)
+                .sink(receiveCompletion: { _ in}, receiveValue: { [weak self] movie in
+                guard let self else { return }
+                promise(.success(map(movie: movie)))
+            }).store(in: &cancelable)
+        }.eraseToAnyPublisher()
+
     }
     private func map(movie: MovieDetailsResponse) -> Movie {
         return  Movie(

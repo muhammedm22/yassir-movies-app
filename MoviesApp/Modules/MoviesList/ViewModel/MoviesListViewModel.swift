@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum MovieListSortingOptions {
     case none
@@ -14,33 +15,25 @@ enum MovieListSortingOptions {
     case newest
 }
 
-protocol MoviesListViewModelProtocol: AnyObject {
-    var movies: [Movie] { get set }
-    var soretedBy: String? { get set }
-    func getMovies(completion: @escaping () -> Void)
-    func didTapMovie(index: Int)
-    func sort(options: MovieListSortingOptions, completion: @escaping () -> Void)
-}
-
-final public class MoviesListViewModel: MoviesListViewModelProtocol {
-    
+final class MoviesListViewModel: ObservableObject {
+    private var cancelable: Set<AnyCancellable> = []
     let useCase: MoviesListUseCaseProtocol
-    var movies: [Movie] = []
-    var soretedBy: String?
     var coordinator: MoviesListCoordinatorProtocol
     private var tempMovies: [Movie] = []
-    
+    @Published var movies: [Movie] = []
+    @Published var screenTitle = "Movies List"
+    @Published var showSortSheet = false
     init(useCase: MoviesListUseCaseProtocol, coordinator: MoviesListCoordinatorProtocol) {
         self.useCase = useCase
         self.coordinator = coordinator
     }
-    func getMovies(completion: @escaping () -> Void) {
-        self.useCase.getMovies(completion: { [weak self] movies in
-            guard let self else { return }
-            self.movies = format(movies: movies)
-            self.tempMovies = self.movies
-            completion()
-        })
+    func getMovies() {
+        self.useCase.getMovies()
+            .sink(receiveCompletion: { _ in } , receiveValue: { [weak self] movies in
+                guard let self else { return }
+                self.movies = self.format(movies: movies)
+                self.tempMovies = self.movies
+        }).store(in: &cancelable)
     }
     
     private func format(movies: [Movie]) -> [Movie] {
@@ -58,26 +51,24 @@ final public class MoviesListViewModel: MoviesListViewModelProtocol {
     private func getStringFrom(date: Date) -> String {
         return  date.toString(format: "yyyy")
     }
-    func didTapMovie(index: Int) {
-        let movie = movies[index]
-        self.coordinator.navigateToDetails(movie: movie)
-    }
     
-    func sort(options: MovieListSortingOptions, completion: @escaping () -> Void) {
+    func sort(options: MovieListSortingOptions) {
         switch options {
         case .alphabet:
-            self.soretedBy = "Alpabet"
+            self.screenTitle = "Alpabet"
             self.movies = self.movies.sorted { $0.title < $1.title }
         case .newest:
-            self.soretedBy = "Newest"
+            self.screenTitle = "Newest"
             self.movies = self.movies.sorted { $0.releaseYear > $1.releaseYear }
         case .votes:
-            self.soretedBy = "Votes"
+            self.screenTitle = "Votes"
             self.movies = self.movies.sorted { $0.vote_average > $1.vote_average }
         case .none:
-            self.soretedBy = "Movie List"
+            self.screenTitle = "Movie List"
             self.movies = tempMovies
         }
-        completion()
+    }
+    func sortButtonTapped() {
+        showSortSheet = true
     }
 }

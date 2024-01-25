@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import MoviesApp
 
 final class MoviesAppTests: XCTestCase {
@@ -20,11 +21,11 @@ final class MoviesAppTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func test_list_with_no_movies() {
         let usecase = MockMoviesUseCase()
         let coordinator = MockCoordinator()
@@ -37,7 +38,7 @@ final class MoviesAppTests: XCTestCase {
         let coordinator = MockCoordinator()
         let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
         viewModel.movies = movies
-        viewModel.sort(options: .alphabet, completion: { })
+        viewModel.sort(options: .alphabet)
         XCTAssertEqual(viewModel.movies.first?.title, "Alpha")
     }
     
@@ -46,7 +47,7 @@ final class MoviesAppTests: XCTestCase {
         let coordinator = MockCoordinator()
         let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
         viewModel.movies = movies
-        viewModel.sort(options: .newest, completion: { })
+        viewModel.sort(options: .newest)
         XCTAssertEqual(viewModel.movies.first?.releaseYear, "2025")
     }
     
@@ -55,15 +56,18 @@ final class MoviesAppTests: XCTestCase {
         let coordinator = MockCoordinator()
         let viewModel = MoviesListViewModel(useCase: usecase, coordinator: coordinator)
         viewModel.movies = movies
-        viewModel.sort(options: .votes, completion: { })
+        viewModel.sort(options: .votes)
         XCTAssertEqual(viewModel.movies.first?.vote_average, 5)
     }
-
+    
 }
 class MockMoviesUseCase: MoviesListUseCaseProtocol {
-    func getMovies(completion: @escaping ([MoviesApp.Movie]) -> Void) {
-        completion([])
+    func getMovies() -> AnyPublisher<[MoviesApp.Movie], MoviesApp.NetworkError> {
+        return Future<[MoviesApp.Movie], MoviesApp.NetworkError> { promise in
+            
+        }.eraseToAnyPublisher()
     }
+    
 }
 
 class MockCoordinator: MoviesListCoordinatorProtocol {

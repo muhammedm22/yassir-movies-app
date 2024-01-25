@@ -6,15 +6,15 @@
 //
 
 import Foundation
-
+import Combine
 protocol MoviesListRemoteRepositoryProtocol: AnyObject {
-    func getMovies(completion: @escaping (Swift.Result<MoviesListResponse, NetworkError>) -> Void)
+    func getMovies() -> AnyPublisher<MoviesListResponse, NetworkError>
 }
 class MoviesListRemoteRepository: MoviesListRemoteRepositoryProtocol {
     let networkClient = NetworkClient(configuration: URLSession.shared.configuration, session: .shared)
-    func getMovies(completion: @escaping (Swift.Result<MoviesListResponse, NetworkError>) -> Void) {
+    func getMovies() -> AnyPublisher<MoviesListResponse, NetworkError> {
         networkClient.request(
             request: MoviesListEndPointProviders.getMovies.makeRequest,
-            mapToModel: MoviesListResponse.self, completion: completion)
+            mapToModel: MoviesListResponse.self)
     }
 }

@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Combine
+
 protocol NetworkClientProtocol: AnyObject {
-    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void)
+    func request<R: Codable>(request: URLRequest, mapToModel: R.Type) -> AnyPublisher<R, NetworkError>
+
 }
 final class NetworkClient: NetworkClientProtocol {
     private var configuration: URLSessionConfiguration
@@ -16,23 +19,22 @@ final class NetworkClient: NetworkClientProtocol {
         self.configuration = configuration
         self.session = session
     }
-    func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void) {
-        session.dataTask(with: request, completionHandler: { data, response, error in
-            guard let _ = URL(string: request.url?.absoluteString ?? "") else {
-                completion(.failure(NetworkError.badURL))
-                return
+    func request<R: Codable>(request: URLRequest, mapToModel: R.Type) -> AnyPublisher<R, NetworkError> {
+    
+        return session.dataTaskPublisher(for: request)
+            .tryMap { element -> Data in
+                guard let response = element.response as? HTTPURLResponse,
+                        (200...299).contains(response.statusCode) else {
+                    throw URLError(.badServerResponse)
+                }
+                return element.data
             }
-            if let error = error {
-                completion(.failure(NetworkError.normalError(error)))
-            }
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                return
-            }
-            guard let data = data else { return }
-            do {
-                let decodedData = try JSONDecoder().decode(R.self, from: data)
-                completion(.success(decodedData))
-            } catch {
+            .receive(on: DispatchQueue.main)
+            .decode(type: R.self, decoder: JSONDecoder())
+            .mapError({ error -> NetworkError in
+                if let error = error as? NetworkError {
+                    return error
+                }
                 if let decodingError = error as? Swift.DecodingError {
                     switch decodingError {
                     case .typeMismatch(let key, let value):
@@ -40,8 +42,9 @@ final class NetworkClient: NetworkClientProtocol {
                     default: break
                     }
                 }
-            }
-        }).resume()
+                return NetworkError.normalError(error)
+            })
+            .eraseToAnyPublisher()
     }
 }
 

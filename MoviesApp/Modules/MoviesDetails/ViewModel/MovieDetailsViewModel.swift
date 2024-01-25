@@ -6,24 +6,23 @@
 //
 
 import Foundation
+import Combine
 
-protocol MovieDetailsViewModelProtocol: AnyObject {
-    var movie: Movie? { get set }
-    func getDetails(completion: @escaping () -> Void)
-}
-
-final class MovieDetailsViewModel: MovieDetailsViewModelProtocol {
-    var movie: Movie?
+final class MovieDetailsViewModel: ObservableObject {
+    @Published var movie: Movie = Movie()
     private var id: Int
     private let useCase: MovieDetailsUseCaseProtocol
+    private var cancelable: Set<AnyCancellable> = []
+    
     init(id: Int, useCase: MovieDetailsUseCaseProtocol) {
         self.id = id
         self.useCase = useCase
     }
-    func getDetails(completion: @escaping () -> Void) {
-        useCase.getMovie(id: id, completion: { [weak self] movie in
-            self?.movie = movie
-            completion()
-        })
+    func getDetails() {
+        useCase.getMovie(id: id)
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] movie in
+                guard let self else { return }
+                self.movie = movie
+            }).store(in: &cancelable)
     }
 }
