@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// NetworkRequest Protocol
 protocol NetworkRequest {
   var baseURL: String { get  }
   var endPoint: String { get }
@@ -18,6 +19,8 @@ protocol NetworkRequest {
 }
 
 extension NetworkRequest {
+    
+    /// Computed property which return URLRequest
   var makeRequest: URLRequest {
     guard var urlComponents = URLComponents(string: baseURL) else { return URLRequest(url: URL(string: "") ?? URL(fileURLWithPath: "")) }
     urlComponents.path = "\(urlComponents.path)\(endPoint)"

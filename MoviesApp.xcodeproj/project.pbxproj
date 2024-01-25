@@ -152,7 +152,7 @@
 		C21F1C292B61A45B00FCA3EC /* MoviesDetails */ = {
 			isa = PBXGroup;
 			children = (
-				C21F1C3F2B61B6F000FCA3EC /* Entities */,
+				C21F1C3F2B61B6F000FCA3EC /* Models */,
 				C21F1C3A2B61B64200FCA3EC /* Repositories */,
 				C21F1C392B61B63900FCA3EC /* UseCase */,
 				C21F1C2F2B61A4CC00FCA3EC /* ViewModel */,
@@ -204,12 +204,12 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		C21F1C3F2B61B6F000FCA3EC /* Entities */ = {
+		C21F1C3F2B61B6F000FCA3EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				C21F1C422B61BD1400FCA3EC /* MovieDetailsResponseModel.swift */,
 			);
-			path = Entities;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C23CAF552B61CEB400E3A20D /* MoviesAppTests */ = {
@@ -304,7 +304,7 @@
 		C26B1ECF2B6070E300600E63 /* MoviesList */ = {
 			isa = PBXGroup;
 			children = (
-				C26B1EEC2B60898600600E63 /* Entites */,
+				C26B1EEC2B60898600600E63 /* Models */,
 				C26B1EDB2B60791C00600E63 /* Repositories */,
 				C26B1ED82B6078D600600E63 /* UseCase */,
 				C26B1ED52B60758A00600E63 /* ViewModel */,
@@ -359,13 +359,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		C26B1EEC2B60898600600E63 /* Entites */ = {
+		C26B1EEC2B60898600600E63 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				C26B1EED2B60899000600E63 /* MoviesListResponse.swift */,
 				C21F1C1A2B6194C500FCA3EC /* Movie.swift */,
 			);
-			path = Entites;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

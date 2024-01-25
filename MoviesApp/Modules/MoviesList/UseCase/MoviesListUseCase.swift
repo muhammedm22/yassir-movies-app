@@ -6,14 +6,21 @@
 //
 
 import Foundation
+/// MoviesList Usecase Protcool
 protocol MoviesListUseCaseProtocol: AnyObject {
     func getMovies(completion: @escaping ([Movie]) -> Void)
 }
+
+/// MoviesList Usecase Protocol whcih contains Movies List bussiness logic
 class MoviesListUseCase: MoviesListUseCaseProtocol {
     private let remoteRepository: MoviesListRemoteRepositoryProtocol
+    /// Init
+    /// - Parameter remoteRepository: MoviesListRemoteRepositoryProtocol
     init(remoteRepository: MoviesListRemoteRepositoryProtocol) {
         self.remoteRepository = remoteRepository
     }
+    /// Get all Movies and map it to array Publisher
+    /// - Parameter completion with List of Movie
     func getMovies(completion: @escaping ([Movie]) -> Void) {
         remoteRepository.getMovies(completion: { [weak self] result in
             guard let self else { return }
@@ -25,7 +32,9 @@ class MoviesListUseCase: MoviesListUseCaseProtocol {
             }
         })
     }
-    
+    /// Mapping moviesResponseResults to [Movie]
+    /// - Parameter movies: [MoviesListResult]]
+    /// - Returns: [Movie]]
     private func map(movies: [MoviesListResult]) -> [Movie] {
         return movies.map{ Movie(
             id: $0.id ?? 0,

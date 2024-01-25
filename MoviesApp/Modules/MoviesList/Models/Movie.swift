@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// DTO 
+// Movie DTO 
 struct Movie {
     let id: Int
     let title: String

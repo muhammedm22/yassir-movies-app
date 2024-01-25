@@ -6,16 +6,30 @@
 //
 
 import Foundation
+/// NetworkClient protocol
 protocol NetworkClientProtocol: AnyObject {
     func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void)
 }
+
+/// NetworkClient Concerate class
 final class NetworkClient: NetworkClientProtocol {
     private var configuration: URLSessionConfiguration
     private var session: URLSession
+    
+    /// Init NetworkClient
+    /// - Parameters:
+    ///   - configuration: URLSessionConfigartions
+    ///   - session: URLSession
     init(configuration: URLSessionConfiguration, session: URLSession) {
         self.configuration = configuration
         self.session = session
     }
+    
+    /// Request URL From URL Session
+    /// - Parameters:
+    ///   - request: URLRequest
+    ///   - mapToModel: Codable
+    ///   - completion: Completion Handle with Result<R:Codable, NetworkError>
     func request<R: Codable>(request: URLRequest, mapToModel: R.Type, completion: @escaping (Swift.Result<R, NetworkError>) -> Void) {
         session.dataTask(with: request, completionHandler: { data, response, error in
             guard let _ = URL(string: request.url?.absoluteString ?? "") else {

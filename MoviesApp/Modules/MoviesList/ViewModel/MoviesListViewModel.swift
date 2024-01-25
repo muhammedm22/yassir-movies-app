@@ -7,13 +7,13 @@
 
 import Foundation
 
+/// Movies List sorting options
 enum MovieListSortingOptions {
     case none
     case alphabet
     case votes
     case newest
 }
-
 protocol MoviesListViewModelProtocol: AnyObject {
     var movies: [Movie] { get set }
     var soretedBy: String? { get set }
@@ -21,7 +21,7 @@ protocol MoviesListViewModelProtocol: AnyObject {
     func didTapMovie(index: Int)
     func sort(options: MovieListSortingOptions, completion: @escaping () -> Void)
 }
-
+/// MovieList ViewModel class which contain presentaion logic
 final public class MoviesListViewModel: MoviesListViewModelProtocol {
     
     let useCase: MoviesListUseCaseProtocol
@@ -34,6 +34,7 @@ final public class MoviesListViewModel: MoviesListViewModelProtocol {
         self.useCase = useCase
         self.coordinator = coordinator
     }
+    /// Get List of movies
     func getMovies(completion: @escaping () -> Void) {
         self.useCase.getMovies(completion: { [weak self] movies in
             guard let self else { return }
@@ -43,18 +44,28 @@ final public class MoviesListViewModel: MoviesListViewModelProtocol {
         })
     }
     
+    /// Format list of movies
+    /// - Parameter movies: [Movies]]
+    /// - Returns: return list of movies formatted
     private func format(movies: [Movie]) -> [Movie] {
         return movies.map({
             let date = convertStringToDate(stringDate: $0.releaseYear)
             let yearFormmattedString = getStringFrom(date: date)
             return  Movie(id: $0.id, title: $0.title, desc: $0.desc, imageURL: $0.imageURL, releaseYear: yearFormmattedString, vote_average: $0.vote_average) })
     }
+    
+    /// Convert String To Date
+    /// - Parameter stringDate: StringDate
+    /// - Returns: Date
     private func convertStringToDate(stringDate: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: stringDate) ?? Date()
     }
     
+    /// Get String from Date
+    /// - Parameter date: Date
+    /// - Returns: Formatted Date string
     private func getStringFrom(date: Date) -> String {
         return  date.toString(format: "yyyy")
     }
@@ -62,7 +73,9 @@ final public class MoviesListViewModel: MoviesListViewModelProtocol {
         let movie = movies[index]
         self.coordinator.navigateToDetails(movie: movie)
     }
-    
+    /// Sort Movies to any of sorting options
+    /// - Parameter options: MovieListSortingOptions
+    /// - Parameter Void completion handler
     func sort(options: MovieListSortingOptions, completion: @escaping () -> Void) {
         switch options {
         case .alphabet:

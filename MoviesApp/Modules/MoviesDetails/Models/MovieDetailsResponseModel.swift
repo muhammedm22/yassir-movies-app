@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Movies Details Response model
 struct MovieDetailsResponse: Codable {
     let id: Int?
     let overview: String?

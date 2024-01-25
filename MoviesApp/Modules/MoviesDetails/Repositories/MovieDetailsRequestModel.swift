@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Movies Details Request Model
 struct MovieDetailsRequestModel {
     let id: Int
 }
