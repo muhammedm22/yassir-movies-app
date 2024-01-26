@@ -25,6 +25,7 @@ final class MoviesListViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var screenTitle = "Movies List"
     @Published var showSortSheet = false
+    @Published var isLoading = true
     init(useCase: MoviesListUseCaseProtocol, coordinator: MoviesListCoordinatorProtocol) {
         self.useCase = useCase
         self.coordinator = coordinator
@@ -33,7 +34,9 @@ final class MoviesListViewModel: ObservableObject {
     /// Get List of movies
     func getMovies() {
         self.useCase.getMovies()
-            .sink(receiveCompletion: { _ in } , receiveValue: { [weak self] movies in
+            .sink(receiveCompletion: { [weak self] _ in
+                    self?.isLoading = false
+            } , receiveValue: { [weak self] movies in
                 guard let self else { return }
                 self.movies = self.format(movies: movies)
                 self.tempMovies = self.movies

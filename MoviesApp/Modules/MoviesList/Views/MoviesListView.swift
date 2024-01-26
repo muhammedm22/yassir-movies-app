@@ -13,6 +13,7 @@ struct MoviesListView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     var body: some View {
+        ZStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.movies, id:\.id) { movie in
@@ -26,31 +27,35 @@ struct MoviesListView: View {
                         viewModel.getMovies()
                     }
             }
-            .navigationTitle(viewModel.screenTitle)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Sort") {
-                        viewModel.sortButtonTapped()
-                    }        .actionSheet(isPresented: $viewModel.showSortSheet) {
-                        ActionSheet(
-                            title: Text("Sort"),
-                            buttons: [
-                                .default(Text("Newest")) {
-                                    viewModel.sort(options: .newest)
-                                },
-                                .default(Text("Alphabet")) {
-                                    viewModel.sort(options: .alphabet)
-                                },
-                                .default(Text("Votes")) {
-                                    viewModel.sort(options: .votes)
-                                },
-                                .destructive(Text("Cancel")) {
-                                    viewModel.sort(options: .none)
-                                }
-                            ]
-                        )
-                    }
+            if viewModel.isLoading {
+                ProgressView()
+            }
+        }
+        .navigationTitle(viewModel.screenTitle)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Sort") {
+                    viewModel.sortButtonTapped()
+                }        .actionSheet(isPresented: $viewModel.showSortSheet) {
+                    ActionSheet(
+                        title: Text("Sort"),
+                        buttons: [
+                            .default(Text("Newest")) {
+                                viewModel.sort(options: .newest)
+                            },
+                            .default(Text("Alphabet")) {
+                                viewModel.sort(options: .alphabet)
+                            },
+                            .default(Text("Votes")) {
+                                viewModel.sort(options: .votes)
+                            },
+                            .destructive(Text("Cancel")) {
+                                viewModel.sort(options: .none)
+                            }
+                        ]
+                    )
                 }
             }
+        }
     }
 }
