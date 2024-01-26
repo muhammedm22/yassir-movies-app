@@ -6,11 +6,6 @@
 //
 
 import Foundation
-/// MoviesList Usecase Protcool
-protocol MoviesListUseCaseProtocol: AnyObject {
-    func getMovies(completion: @escaping ([Movie]) -> Void)
-}
-
 /// MoviesList Usecase Protocol whcih contains Movies List bussiness logic
 class MoviesListUseCase: MoviesListUseCaseProtocol {
     private let remoteRepository: MoviesListRemoteRepositoryProtocol

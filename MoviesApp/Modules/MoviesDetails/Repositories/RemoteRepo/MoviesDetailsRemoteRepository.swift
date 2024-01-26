@@ -6,12 +6,6 @@
 //
 import Foundation
 
-
-/// MoviesDetailsRemoteRepositoryProtocol
-protocol MoviesDetailsRemoteRepositoryProtocol: AnyObject {
-    func getMovie(data: MovieDetailsRequestModel, completion: @escaping (Swift.Result<MovieDetailsResponse, NetworkError>) -> Void)
-}
-
 /// MoviesDetailsRemoteRepository concerate class
 class MoviesDetailsRemoteRepository: MoviesDetailsRemoteRepositoryProtocol {
     let networkClient = NetworkClient(configuration: URLSession.shared.configuration, session: .shared)

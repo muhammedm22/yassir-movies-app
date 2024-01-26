@@ -7,10 +7,6 @@
 
 import Foundation
 
-/// MovieDetailsUseCaseProtocol
-protocol MovieDetailsUseCaseProtocol: AnyObject {
-    func getMovie(id: Int, completion: @escaping (Movie) -> Void)
-}
 /// MovieDetailsUseCase Concerate class which implement bussiness logic
 class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
     private let remoteRepository: MoviesDetailsRemoteRepositoryProtocol
