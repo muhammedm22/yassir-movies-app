@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-/// MovieDetailsUseCaseProtocol
-protocol MovieDetailsUseCaseProtocol: AnyObject {
-    func getMovie(id: Int) -> AnyPublisher<Movie, NetworkError>
-}
 /// MovieDetailsUseCase Concerate class which implement bussiness logic
 class MovieDetailsUseCase: MovieDetailsUseCaseProtocol {
     private let remoteRepository: MoviesDetailsRemoteRepositoryProtocol

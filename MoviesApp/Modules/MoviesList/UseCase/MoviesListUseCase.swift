@@ -8,11 +8,6 @@
 import Foundation
 import Combine
 
-/// MoviesList Usecase Protcool
-protocol MoviesListUseCaseProtocol: AnyObject {
-    func getMovies() -> AnyPublisher<[Movie], NetworkError>
-}
-
 /// MoviesList Usecase Protocol whcih contains Movies List bussiness logic
 class MoviesListUseCase: MoviesListUseCaseProtocol {
     private let remoteRepository: MoviesListRemoteRepositoryProtocol

@@ -7,12 +7,6 @@
 import Foundation
 import Combine
 
-
-/// MoviesDetailsRemoteRepositoryProtocol
-protocol MoviesDetailsRemoteRepositoryProtocol: AnyObject {
-    func getMovie(data: MovieDetailsRequestModel) -> AnyPublisher<MovieDetailsResponse, NetworkError>
-}
-
 /// MoviesDetailsRemoteRepository concerate class
 class MoviesDetailsRemoteRepository: MoviesDetailsRemoteRepositoryProtocol {
     let networkClient = NetworkClient(configuration: URLSession.shared.configuration, session: .shared)
