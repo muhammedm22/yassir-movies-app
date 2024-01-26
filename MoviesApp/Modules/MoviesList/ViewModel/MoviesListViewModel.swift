@@ -95,6 +95,16 @@ final class MoviesListViewModel: ObservableObject {
             self.movies = tempMovies
         }
     }
+    
+    func search(text: String) {
+        if text.isEmpty {
+            movies = tempMovies
+        } else  {
+            movies = movies.filter({
+                $0.title.lowercased().contains(text.trimmingCharacters(in: .whitespaces).lowercased())
+            })
+        }
+    }
     func sortButtonTapped() {
         showSortSheet = true
     }
