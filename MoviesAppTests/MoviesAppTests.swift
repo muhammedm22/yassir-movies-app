@@ -71,6 +71,10 @@ class MockMoviesUseCase: MoviesListUseCaseProtocol {
 }
 
 class MockCoordinator: MoviesListCoordinatorProtocol {
+    func initDetailsView(id: Int) -> MoviesApp.MoviesDetailsView {
+        return MovieDetailsConfigurator.configureModule(id: id)
+    }
+    
     func navigateToDetails(movie: MoviesApp.Movie) {
         
     }
