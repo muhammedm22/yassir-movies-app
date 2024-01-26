@@ -45,6 +45,7 @@
 		C2D675252B632D43009ADF40 /* MovieDetailsRemoteRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D675242B632D43009ADF40 /* MovieDetailsRemoteRepositoryProtocol.swift */; };
 		C2D675282B632D6D009ADF40 /* MoviesListRemoteRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D675272B632D6D009ADF40 /* MoviesListRemoteRepositoryProtocol.swift */; };
 		C2D6752A2B632D82009ADF40 /* MoviesListUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D675292B632D82009ADF40 /* MoviesListUseCaseProtocol.swift */; };
+		C2D675362B642F0A009ADF40 /* MoviesListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D675352B642F0A009ADF40 /* MoviesListConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		C2D675242B632D43009ADF40 /* MovieDetailsRemoteRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRemoteRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C2D675272B632D6D009ADF40 /* MoviesListRemoteRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRemoteRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C2D675292B632D82009ADF40 /* MoviesListUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListUseCaseProtocol.swift; sourceTree = "<group>"; };
+		C2D675352B642F0A009ADF40 /* MoviesListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 			children = (
 				C23CAF612B61DAC200E3A20D /* MoviesListView.swift */,
 				C23CAF632B61DB2E00E3A20D /* MovieCardView.swift */,
+				C2D675352B642F0A009ADF40 /* MoviesListConfigurator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				C21F1C382B61AC0200FCA3EC /* Date+Extension.swift in Sources */,
 				C21F1C252B619D3700FCA3EC /* Config.swift in Sources */,
 				C26B1ED72B60759700600E63 /* MoviesListViewModel.swift in Sources */,
+				C2D675362B642F0A009ADF40 /* MoviesListConfigurator.swift in Sources */,
 				C21F1C412B61B70000FCA3EC /* MovieDetailsRequestModel.swift in Sources */,
 				C23CAF692B61E62000E3A20D /* MoviesDetailsView.swift in Sources */,
 				C21F1C312B61A4DF00FCA3EC /* MovieDetailsViewModel.swift in Sources */,

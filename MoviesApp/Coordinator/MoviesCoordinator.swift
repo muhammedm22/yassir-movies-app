@@ -19,13 +19,10 @@ class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
     }
 
     func start() {
-        let remoteRepo = MoviesListRemoteRepository()
-        let useCase = MoviesListUseCase(remoteRepository: remoteRepo)
-        let viewModel = MoviesListViewModel(useCase: useCase, coordinator: self)
-        let moviesListVC = UIHostingController(rootView: MoviesListView(viewModel: viewModel))
+        let movieListView = MoviesListConfigurator.configureModule(coordinator: self)
+        let moviesListVC = UIHostingController(rootView: movieListView)
         navigationController.pushViewController(moviesListVC, animated: false)
     }
-    
     func initDetailsView(id: Int) -> MoviesDetailsView {
         return MovieDetailsConfigurator.configureModule(id: id)
     }
