@@ -9,6 +9,7 @@ import UIKit
 
 class MoviesListViewController: UIViewController {
     // MARK: - Outlets
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     // MARK: - Properties
@@ -31,9 +32,13 @@ class MoviesListViewController: UIViewController {
         }
     }
     private func setUI() {
+        setupSearchBar()
         showActivityIndicator()
         setupTableView()
         setNavigationController()
+    }
+    private func setupSearchBar() {
+        searchBar.delegate = self
     }
     private func setupTableView() {
         tableView.delegate = self
@@ -123,5 +128,12 @@ extension MoviesListViewController {
     }
     func hideActivityIndicator() {
         activityIndicator.isHidden = true
+    }
+}
+extension MoviesListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel?.search(text: searchText, completion: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
 }

@@ -20,10 +20,10 @@ protocol MoviesListViewModelProtocol: AnyObject {
     func getMovies(completion: @escaping () -> Void)
     func didTapMovie(index: Int)
     func sort(options: MovieListSortingOptions, completion: @escaping () -> Void)
+    func search(text: String, completion: @escaping () -> Void)
 }
 /// MovieList ViewModel class which contain presentaion logic
 final public class MoviesListViewModel: MoviesListViewModelProtocol {
-    
     let useCase: MoviesListUseCaseProtocol
     var movies: [Movie] = []
     var soretedBy: String?
@@ -97,6 +97,16 @@ final public class MoviesListViewModel: MoviesListViewModelProtocol {
         case .none:
             self.soretedBy = "Movie List"
             self.movies = tempMovies
+        }
+        completion()
+    }
+    func search(text: String, completion: @escaping () -> Void) {
+        if text.isEmpty {
+            movies = tempMovies
+        } else  {
+            movies = movies.filter({
+                $0.title.lowercased().contains(text.trimmingCharacters(in: .whitespaces).lowercased())
+            })
         }
         completion()
     }
