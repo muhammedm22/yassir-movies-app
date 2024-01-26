@@ -37,7 +37,7 @@ final class MoviesListViewModel: ObservableObject {
                 guard let self else { return }
                 self.movies = self.format(movies: movies)
                 self.tempMovies = self.movies
-        }).store(in: &cancelable)
+            }).store(in: &cancelable)
     }
     
     /// Format list of movies
@@ -47,7 +47,15 @@ final class MoviesListViewModel: ObservableObject {
         return movies.map({
             let date = convertStringToDate(stringDate: $0.releaseYear)
             let yearFormmattedString = getStringFrom(date: date)
-            return  Movie(id: $0.id, title: $0.title, desc: $0.desc, imageURL: $0.imageURL, releaseYear: yearFormmattedString, vote_average: $0.vote_average) })
+            return  Movie(
+                id: $0.id,
+                title: $0.title,
+                desc: $0.desc,
+                imageURL: $0.imageURL,
+                releaseYear: yearFormmattedString,
+                vote_average: $0.vote_average
+            )
+        })
     }
     
     /// Convert String To Date
