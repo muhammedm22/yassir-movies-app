@@ -26,11 +26,13 @@ struct MoviesListView: View {
                     .task {
                         viewModel.getMovies()
                     }
+            }.onChange(of: viewModel.search) { text in
+                viewModel.search(text: text)
             }
             if viewModel.isLoading {
                 ProgressView()
             }
-        }
+        }.searchable(text: $viewModel.search)
         .navigationTitle(viewModel.screenTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

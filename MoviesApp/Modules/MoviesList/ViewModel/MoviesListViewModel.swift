@@ -26,6 +26,7 @@ final class MoviesListViewModel: ObservableObject {
     @Published var screenTitle = "Movies List"
     @Published var showSortSheet = false
     @Published var isLoading = true
+    @Published var search = ""
     init(useCase: MoviesListUseCaseProtocol, coordinator: MoviesListCoordinatorProtocol) {
         self.useCase = useCase
         self.coordinator = coordinator
