@@ -16,20 +16,12 @@ class MoviesListCoordinator: Coordinator, MoviesListCoordinatorProtocol {
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-
     func start() {
-        let remoteRepo = MoviesListRemoteRepository()
-        let useCase = MoviesListUseCase(remoteRepository: remoteRepo)
-        let viewModel = MoviesListViewModel(useCase: useCase, coordinator: self)
-        let moviesListVC = MoviesListViewController(viewModel: viewModel)
+        let moviesListVC = MoviesListConfigurator.configureModule(coordinator: self)
         navigationController.pushViewController(moviesListVC, animated: false)
     }
     func navigateToDetails(movie: Movie) {
-        let remoteRepo = MoviesDetailsRemoteRepository()
-        let useCase = MovieDetailsUseCase(remoteRepository: remoteRepo)
-        let viewModel = MovieDetailsViewModel(id: movie.id, useCase: useCase)
-        let detailsVC = MovieDetailsViewController(viewModel: viewModel)
+        let detailsVC = MoviesDetailsConfigurator.configureModule(id: movie.id)
         self.navigationController.pushViewController(detailsVC, animated: true)
     }
-    
 }
