@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-// Movies List Remote reposiitory protcool
+// Movies List Remote reposiitory protocol
 protocol MoviesListRemoteRepositoryProtocol: AnyObject {
     func getMovies() -> AnyPublisher<MoviesListResponse, NetworkError>
 }

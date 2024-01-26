@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-/// Movies List Remote reposiitory protcool
-protocol MoviesListRemoteRepositoryProtocol: AnyObject {
-    func getMovies() -> AnyPublisher<MoviesListResponse, NetworkError>
-}
 /// Movies List Remote concerate class
 class MoviesListRemoteRepository: MoviesListRemoteRepositoryProtocol {
     let networkClient = NetworkClient(configuration: URLSession.shared.configuration, session: .shared)
