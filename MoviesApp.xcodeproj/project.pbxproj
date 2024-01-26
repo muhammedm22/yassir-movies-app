@@ -149,6 +149,7 @@
 		C21F1C292B61A45B00FCA3EC /* MoviesDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C2D6753D2B6430FA009ADF40 /* Configurator */,
 				C21F1C3F2B61B6F000FCA3EC /* Models */,
 				C21F1C3A2B61B64200FCA3EC /* Repositories */,
 				C21F1C392B61B63900FCA3EC /* UseCase */,
@@ -162,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				C23CAF682B61E62000E3A20D /* MoviesDetailsView.swift */,
-				C23CAF6A2B61E91800E3A20D /* MovieDetailsConfigurator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +302,7 @@
 		C26B1ECF2B6070E300600E63 /* MoviesList */ = {
 			isa = PBXGroup;
 			children = (
+				C2D6753E2B643107009ADF40 /* Configurator */,
 				C26B1EEC2B60898600600E63 /* Models */,
 				C26B1EDB2B60791C00600E63 /* Repositories */,
 				C26B1ED82B6078D600600E63 /* UseCase */,
@@ -316,7 +317,6 @@
 			children = (
 				C23CAF612B61DAC200E3A20D /* MoviesListView.swift */,
 				C23CAF632B61DB2E00E3A20D /* MovieCardView.swift */,
-				C2D675352B642F0A009ADF40 /* MoviesListConfigurator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -383,6 +383,22 @@
 				C26B1EDC2B60793A00600E63 /* MoviesListRemoteRepository.swift */,
 			);
 			path = RemoteRepo;
+			sourceTree = "<group>";
+		};
+		C2D6753D2B6430FA009ADF40 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				C23CAF6A2B61E91800E3A20D /* MovieDetailsConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		C2D6753E2B643107009ADF40 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				C2D675352B642F0A009ADF40 /* MoviesListConfigurator.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
